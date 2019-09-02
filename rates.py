@@ -23,23 +23,24 @@ def add_rendimientos(df):
 
     return dataset
 
-file = open('list_of_files_4_years', 'rb')
-# dump information to that file
-data = pickle.load(file)
-# close the file
-file.close()
+if __name__ == "__main__":
+    file = open('list_of_files_4_years', 'rb')
+    # dump information to that file
+    data = pickle.load(file)
+    # close the file
+    file.close()
 
-# Plot Performance
+    # Plot Performance
 
-dates = pd.date_range('2014-08-31','2014-12-31', freq='B')
-df_final = pd.DataFrame(index=dates)
+    dates = pd.date_range('2014-08-31','2014-12-31', freq='B')
+    df_final = pd.DataFrame(index=dates)
 
-for file in data[1000:2000]:
-    df = add_rendimientos(stock(file))
-    df = df.drop(columns=['Close'], axis=1)
-    df = df.rename(columns={'Performance': f"Performance {file}"})
-    df_final = df_final.join(df)
+    for file in data[1000:2000]:
+        df = add_rendimientos(stock(file))
+        df = df.drop(columns=['Close'], axis=1)
+        df = df.rename(columns={'Performance': f"Performance {file}"})
+        df_final = df_final.join(df)
 
-df_final.plot(kind="line", legend=False)
-plt.title("Performance v/s Time")
-plt.show()
+    df_final.plot(kind="line", legend=False)
+    plt.title("Performance v/s Time")
+    plt.show()

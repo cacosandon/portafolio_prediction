@@ -8,7 +8,7 @@ def stock_graph(filename,title):
     df = pd.read_csv(f"Stocks/{filename}", index_col='Date', parse_dates=True, usecols=['Date', 'Close'])
     return df
 
-file = open('list_of_files_6_years', 'rb')
+file = open('list_of_files_4_years_01_4months', 'rb')
 # dump information to that file
 data = pickle.load(file)
 # close the file
@@ -28,5 +28,5 @@ for filename in filenames:
     graphs += 1
 
 df_final.plot(legend=False)
-plt.title("Líneas")
+plt.title("Curvas de precios de acciones")
 plt.show()
