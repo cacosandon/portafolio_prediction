@@ -12,7 +12,7 @@ def stock_data(filename):
 
 def proportion_more_x_years(filenames, x):
     date_format = "%Y-%m-%d"
-    final_date = datetime.strptime("2017-11-10", date_format)
+    final_date = datetime.strptime("2014-12-31", date_format)
     files = []
     for filename in filenames:
         df = stock_data(filename)
