@@ -28,4 +28,13 @@ data = pickle.load(file)
 # close the file
 file.close()
 
-print(data.head(50))
+### mayores a 0.001 en rendimiento en 4 meses, 4 años de datos, 70% de los rendimientos diarios sobre 0.1% ###
+
+# open a file, where you stored the pickled data
+file = open('list_of_files_4_years_01_4months_under0', 'rb')
+# dump information to that file
+data = pickle.load(file)
+# close the file
+file.close()
+
+print(len(data))

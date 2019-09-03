@@ -23,16 +23,18 @@ for file in data:
 
 dates = pd.date_range('2014-08-31','2014-12-31', freq='B')
 lista = []
+varianzas = []
 for file in data:
-    df = add_rendimientos(stock(file))
+    df = stock(file)
+    df = add_rendimientos(df)
     df = df.drop(columns=['Close'], axis=1)
+    
     promedio = sum(df['Performance'])/len(df)
     df = df.rename(columns={'Performance': f"Performance {file}"})
     if promedio > 0.001:
         lista.append(file)
 
-
-file = open('list_of_files_4_years_01_4months', 'wb')
+file = open('list_of_files_4_years_01_4months_varianza_01', 'wb')
 # dump information to that file
 pickle.dump(lista, file)
 # close the file

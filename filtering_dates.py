@@ -7,7 +7,7 @@ import pickle
 filenames = [x for x in os.listdir("Stocks") if x.endswith('.txt') and os.path.getsize(f"Stocks/{x}") > 0]
 
 def stock_data(filename):
-    df = pd.read_csv(f"Stocks/{filename}", index_col='Date', parse_dates=True, usecols=['Date'])
+    df = pd.read_csv(f"Stocks/{filename}", index_col='Date', parse_dates=True, usecols=['Date', 'Close'])
     return df
 
 def proportion_more_x_years(filenames, x):
@@ -21,11 +21,12 @@ def proportion_more_x_years(filenames, x):
             files.append(filename)
     return files
 
-files = proportion_more_x_years(filenames, 6)
+if __name__ == "__main__":
+    files = proportion_more_x_years(filenames, 6)
 
-# open a file, where you ant to store the data
-file = open('list_of_files_6_years', 'wb')
-# dump information to that file
-pickle.dump(files, file)
-# close the file
-file.close()
+    # open a file, where you ant to store the data
+    file = open('list_of_files_6_years', 'wb')
+    # dump information to that file
+    pickle.dump(files, file)
+    # close the file
+    file.close()
