@@ -9,9 +9,12 @@ filenames = data
 # close the file
 file.close()
 
+def read_file_liq(filename):
+    return pd.read_csv(f"Stocks/{filename}", index_col='Date', parse_dates=True, usecols=['Date', 'Close', 'Volume'])
+
 dataframe_filtered = None
 for file in data:
-    # Filtrado
+    pass
 
 file = open('listof_files/list_of_files_4_years_liqu', 'wb')
 # dump information to that file
