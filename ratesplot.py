@@ -24,7 +24,7 @@ def add_rendimientos(df):
     return dataset
 
 if __name__ == "__main__":
-    file = open('list_of_files_4_years', 'rb')
+    file = open('listof_files/list_of_files_4_years', 'rb')
     # dump information to that file
     data = pickle.load(file)
     # close the file
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     dates = pd.date_range('2014-08-31','2014-12-31', freq='B')
     df_final = pd.DataFrame(index=dates)
 
-    for file in data[1000:2000]:
+    for file in data[1000:1050]:
         df = add_rendimientos(stock(file))
         df = df.drop(columns=['Close'], axis=1)
         df = df.rename(columns={'Performance': f"Performance {file}"})

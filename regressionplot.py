@@ -6,7 +6,7 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 import random
 
-file = open('list_of_files_4_years', 'rb')
+file = open('listof_files/list_of_files_4_years', 'rb')
 # dump information to that file
 data = pickle.load(file)
 filenames = data
@@ -19,7 +19,7 @@ dates_real_total = pd.date_range('2013-09-30','2014-02-28', freq='B')
 dates_train = pd.date_range('2013-09-30','2014-01-31', freq='B')
 df_final = pd.DataFrame(index=dates_real_total)
 
-sample_n = [43, 46]
+sample_n = [50, 53]
 
 for file in data[sample_n[0]:sample_n[1]]:
 
@@ -39,6 +39,7 @@ for file in data[sample_n[0]:sample_n[1]]:
     y = df_regression['Close']
     X = np.array([i for i in range(len(y))]).reshape(-1,1)
     regressor.fit(X, y)
+    print(regressor.coef_)
 
     # Obtenemos recta de 2010 a 2017
     X_real = np.array([i for i in range(len(df_regression_large))]).reshape(-1,1)
